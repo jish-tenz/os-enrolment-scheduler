@@ -1,0 +1,13 @@
+s8210611 1141262 1119912  0 12:13 pts/13   00:00:00 grep --color=auto enrolment_scheduler
+top - 12:13:21 up 252 days,  9:39, 21 users,  load average: 0.12, 0.07, 0.06
+Tasks: 493 total,   1 running, 492 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.2 sy,  0.0 ni, 99.8 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  31780.9 total,   1674.9 free,   4870.4 used,  25235.6 buff/cache
+MiB Swap:   6016.0 total,   6015.0 free,      1.0 used.  24881.2 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+1141272 s8210611  20   0  264540   5376   4236 R  12.5   0.0   0:00.02 top
+      1 root      20   0   92112  11988   8140 S   0.0   0.0 535:19.49 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:26.25 kthreadd
+      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par+

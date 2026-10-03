@@ -1,0 +1,70 @@
+========================================================================
+ VU ENROLMENT & TIMETABLE ALLOCATION SYSTEM - SCHEDULER SIMULATION
+ Student: Jenish Gurung | Student ID: s8210611
+ Student: Hoang Gia Phat Nguyen | Student ID: s8174754
+ Assessment: VU Enrolment System Scheduler
+ Generated: Tue Aug 11 00:04:44 AEST 2026
+========================================================================
+
+[t=0] REQ_01 ARRIVED  (Seat check; cpu=4, mem=20, seat=1)
+[t=0] REQ_01 PASSED capacity check -> queued for memory admission
+[t=0] REQ_02 ARRIVED  (Timetable validation; cpu=6, mem=30, seat=1)
+[t=0] REQ_02 PASSED capacity check -> queued for memory admission
+[t=0] REQ_01 ADMITTED to memory (allocated 20; free memory now 80/100) -> entered Ready Queue
+[t=0] REQ_02 ADMITTED to memory (allocated 30; free memory now 50/100) -> entered Ready Queue
+[t=2] REQ_01 RAN [0-2] (remaining 4->2) -> quantum expired, requeued (still resident in memory)
+[t=2] REQ_03 ARRIVED  (Tutorial swap; cpu=2, mem=15, seat=0)
+[t=2] REQ_03 REJECTED - class capacity full (seat constraint failed at admission gate)
+[t=2] REQ_04 ARRIVED  (Prerequisite check; cpu=3, mem=25, seat=1)
+[t=2] REQ_04 PASSED capacity check -> queued for memory admission
+[t=2] REQ_05 ARRIVED  (Full timetable validation; cpu=5, mem=40, seat=1)
+[t=2] REQ_05 PASSED capacity check -> queued for memory admission
+[t=2] REQ_06 ARRIVED  (Seat check; cpu=1, mem=10, seat=1)
+[t=2] REQ_06 PASSED capacity check -> queued for memory admission
+[t=2] REQ_04 ADMITTED to memory (allocated 25; free memory now 25/100) -> entered Ready Queue
+[t=2] REQ_05 WAITING - insufficient memory (needs 40, only 25/100 free) [retry 1/3]
+[t=2] REQ_06 ADMITTED to memory (allocated 10; free memory now 15/100) -> entered Ready Queue
+[t=4] REQ_02 RAN [2-4] (remaining 6->4) -> quantum expired, requeued (still resident in memory)
+[t=4] REQ_07 ARRIVED  (Clash detection; cpu=4, mem=35, seat=1)
+[t=4] REQ_07 PASSED capacity check -> queued for memory admission
+[t=4] REQ_08 ARRIVED  (Tutorial swap; cpu=2, mem=20, seat=0)
+[t=4] REQ_08 REJECTED - class capacity full (seat constraint failed at admission gate)
+[t=4] REQ_11 ARRIVED  (Prerequisite check (personalised: last 2 digits of s8210611); cpu=3, mem=90, seat=1)
+[t=4] REQ_11 PASSED capacity check -> queued for memory admission
+[t=4] REQ_05 WAITING - insufficient memory (needs 40, only 15/100 free) [retry 2/3]
+[t=4] REQ_07 WAITING - insufficient memory (needs 35, only 15/100 free) [retry 1/3]
+[t=4] REQ_11 WAITING - insufficient memory (needs 90, only 15/100 free) [retry 1/3]
+[t=6] REQ_01 RAN [4-6] (remaining 2->0) -> COMPLETED. Memory released (+20); free memory now 35/100
+[t=6] REQ_05 WAITING - insufficient memory (needs 40, only 35/100 free) [retry 3/3]
+[t=6] REQ_07 ADMITTED to memory (allocated 35; free memory now 0/100) -> entered Ready Queue
+[t=6] REQ_11 WAITING - insufficient memory (needs 90, only 0/100 free) [retry 2/3]
+[t=8] REQ_04 RAN [6-8] (remaining 3->1) -> quantum expired, requeued (still resident in memory)
+[t=8] REQ_05 REJECTED - insufficient memory after 3 admission retries (needs 40, only 0/100 free)
+[t=8] REQ_11 WAITING - insufficient memory (needs 90, only 0/100 free) [retry 3/3]
+[t=9] REQ_06 RAN [8-9] (remaining 1->0) -> COMPLETED. Memory released (+10); free memory now 10/100
+[t=9] REQ_11 REJECTED - insufficient memory after 3 admission retries (needs 90, only 10/100 free)
+[t=11] REQ_02 RAN [9-11] (remaining 4->2) -> quantum expired, requeued (still resident in memory)
+[t=13] REQ_07 RAN [11-13] (remaining 4->2) -> quantum expired, requeued (still resident in memory)
+[t=14] REQ_04 RAN [13-14] (remaining 1->0) -> COMPLETED. Memory released (+25); free memory now 35/100
+[t=16] REQ_02 RAN [14-16] (remaining 2->0) -> COMPLETED. Memory released (+30); free memory now 65/100
+[t=18] REQ_07 RAN [16-18] (remaining 2->0) -> COMPLETED. Memory released (+35); free memory now 100/100
+
+========================================================================
+ EXECUTION SUMMARY @ t=18
+========================================================================
+ID       Outcome   Notes       
+REQ_01   DONE      Seat check  
+REQ_02   DONE      Timetable validation
+REQ_03   REJECTED  Tutorial swap
+REQ_04   DONE      Prerequisite check
+REQ_05   REJECTED  Full timetable validation
+REQ_06   DONE      Seat check  
+REQ_07   DONE      Clash detection
+REQ_08   REJECTED  Tutorial swap
+REQ_11   REJECTED  Prerequisite check (personalised: last 2 digits of s8210611)
+
+Accepted (admitted to memory): 5
+Completed (finished execution): 5
+Rejected (capacity or memory):  4
+Total requests processed:       9
+========================================================================

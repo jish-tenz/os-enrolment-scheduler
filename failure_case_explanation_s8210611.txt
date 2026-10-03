@@ -1,0 +1,70 @@
+========================================================================
+ VU ENROLMENT SYSTEM - FAILURE CASE EXPLANATION
+ Student Name: Jenish Gurung        | Student ID: s8210611
+ Student Name: Hoang Gia Phat Nguyen | Student ID: s8174754
+ Assessment: VU Enrolment System - Failure Analysis
+========================================================================
+
+FAILED REQUEST: REQ_11  (personalised request ID)
+Personalisation basis: last two digits of Student ID s8210611 ("11")
+
+REQUEST PROFILE
+  Arrival time:     t = 4
+  CPU burst:        3 units
+  Memory required:  90 units (of a 100-unit total system pool)
+  Seat capacity:    available (passed the capacity gate)
+
+WHAT HAPPENED (from execution_log_s8210611.txt)
+  t=4  REQ_11 arrives and passes the class-capacity check (a seat is
+       available, so it is queued for memory admission).
+  t=4  REQ_11 attempts memory admission: needs 90, only 15/100 free
+       (REQ_01, REQ_02, REQ_04 and REQ_06 are already resident).
+       -> WAITING, retry 1/3.
+  t=6  Retry 2/3: needs 90, only 0/100 free (REQ_07 has since been
+       admitted with the last of the free memory).
+  t=9  Retry 3/3: needs 90, only 10/100 free (REQ_06 has completed and
+       released 10 units, but this is still far short of 90).
+  t=9  REQ_11 is REJECTED - insufficient memory after 3 admission
+       retries (needs 90, only 10/100 free at the final check).
+
+WHY IT FAILED (multi-constraint reasoning)
+  REQ_11 did not fail because of CPU contention and did not fail
+  because of class capacity - it passed the capacity gate immediately
+  and its CPU burst (3 units) is modest. It failed purely on the
+  MEMORY constraint: its 90-unit requirement is close to the entire
+  system pool (100 units), so it can only be admitted at a moment when
+  almost every other resident request has already completed and
+  released its memory. Under this workload, five other legitimate
+  requests (REQ_01, REQ_02, REQ_04, REQ_06, REQ_07) arrive and are
+  admitted first, and the small amounts of memory freed as they
+  complete (20, then 10 units) are never enough, within the
+  MAX_WAIT_ROUNDS=3 retry budget, to reach 90 free units at once.
+
+  This is a textbook example of resource starvation caused by a
+  large-footprint request competing against several small, quickly-
+  admitted requests in a constrained shared-memory pool - the same
+  problem that occurs in real operating systems when a
+  memory-intensive process (e.g. a large batch job) is repeatedly
+  passed over in favour of several small, fast-admitting processes.
+
+WHY THIS IS THE CORRECT SYSTEM BEHAVIOUR (not a bug)
+  Allowing REQ_11 to wait indefinitely would violate the brief's
+  requirement to "handle overload situations safely" - an unbounded
+  wait queue for a request that may never be satisfiable would tie up
+  scheduler bookkeeping indefinitely and could starve the log/UI of a
+  clear status for the student. Bounding the retries at
+  MAX_WAIT_ROUNDS=3 and then rejecting with a clear, logged reason
+  ("insufficient memory after 3 admission retries") ensures the system
+  fails predictably and transparently rather than hanging silently -
+  this is the same trade-off real OS admission controllers make when
+  bounding retry/backoff counts for oversized resource requests.
+
+RECOMMENDATION FOR THE REAL VU SYSTEM
+  In production this would likely be resolved not by rejecting the
+  student outright, but by routing memory-heavy requests (e.g. full
+  timetable validation) to a separate, lower-degree-of-multiprogramming
+  queue with a reserved memory partition, so that large and small
+  requests do not compete for the same shared pool. This trade-off
+  (fairness vs correctness, discussed further in Section B of the
+  written report) is exactly the kind of design decision a systems
+  architect must justify.

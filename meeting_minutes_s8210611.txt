@@ -1,0 +1,105 @@
+========================================================================  
+VU ENROLMENT SYSTEM - TEAM MEETING MINUTES  
+
+Student Name: Jenish Gurung Student ID: s8210611  
+Student Name: Hoang Gia Phat Nguyen Student ID: s8 174754 
+Assessment: VU Enrolment System - Team coordination evidence  
+========================================================================  
+
+
+------------------------------------------------------------------------  
+MEETING 1 - 6 August 20 26  
+
+Attendees: Jenish Gurung, Hoang Gia Phat Nguyen  
+
+Mode: Teams Call  
+
+
+
+Discussed:  
+
+- Read through assignment brief and marking rubric.  
+
+- Ensured we understood all deliverables required; design document, 
+shell script, evidence files and report.  
+
+- Decide to implement Round Robin scheduling, talked through resources 
+needed.  
+
+- Talked through how we would like to split tasks. 
+
+
+
+Action items:  
+
+- Jenish Gurung: Complete system design and shell script. 
+
+- Hoang Gia Phat Nguyen: Help with the report structure and review. 
+------------------------------------------------------------------------  
+
+MEETING 2 - 9 August 20 26  
+
+Attendees: Jenish Gurung, Hoang Gia Phat Nguyen  
+
+Mode: Teams Chat  
+
+
+
+Discussed:  
+
+- Updates on scheduler implementation and logic behind scheduling. 
+
+- Tested memory allocation and CPU process scheduling behaviour. 
+
+- Confirmed personalised request REQ_11 as Student ID = s8210611. 
+
+- Discussed evidence collection and update to report.  
+
+Action items:  
+
+- Jenish Gurung: Create evidence of execution log and process snapshot. 
+
+- Hoang Gia Phat Nguyen: Complete analysis of scheduling strategy for report and review. 
+ 
+
+------------------------------------------------------------------------
+
+MEETING 3 - 13 August 2026
+
+Attendees: Jenish Gurung, Hoang Gia Phat Nguyen
+
+Format: Teams Call
+
+ 
+
+Discussed:
+
+- Cross-checked script output against the reasoning table.
+
+- Reviewed failure case explanation and reflection.
+
+- Verified consistency across report, script and evidence files.
+
+- Planned final demonstration and submission process.
+
+ 
+
+Action items:
+
+- Jenish Gurung: Perform final proofread and submission checks.
+
+- Hoang Gia Phat Nguyen: Review report formatting and references.
+
+========================================================================
+SUMMARY OF CONTRIBUTION SPLIT (also in written report)
+========================================================================
+Jenish Gurung (s8210611):
+  System design, shell script implementation, execution log/process
+  snapshot/failure case evidence generation, report Sections 1-3 and
+  Section A/C.
+
+Hoang Gia Phat Nguyen (s8174754):
+  Scheduling strategy comparison and justification (Section B),
+  trade-off analysis, reflection (Section D), report formatting and
+  review.
+========================================================================

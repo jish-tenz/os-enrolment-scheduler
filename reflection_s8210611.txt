@@ -1,0 +1,27 @@
+========================================================================
+ VU ENROLMENT SYSTEM - REFLECTION
+ Student Name: Jenish Gurung        | Student ID: s8210611
+ Student Name: Hoang Gia Phat Nguyen | Student ID: s8174754
+========================================================================
+
+Not all enrolment requests should be treated equally because they place
+genuinely different demands on the system: a seat check consumes a
+handful of CPU units and a small amount of memory, while a full
+timetable validation can hold 30-40 units of memory for several CPU
+cycles. Treating every request identically, for example by giving each
+one an unconditional guarantee of admission, would let a small number
+of memory-heavy requests exhaust the shared pool and starve every
+smaller, faster request behind them - the opposite of the "fair and
+responsive" outcome the brief asks for. Our simulation makes this
+concrete: REQ_11 (90 memory units) is rejected not because it arrived
+late or was unimportant, but because admitting it would have meant
+denying memory to several smaller requests that could be served
+immediately, so equal treatment would actually have produced a less
+fair outcome, not a more fair one. Real operating systems make this
+same trade-off constantly under heavy load, using bounded retry
+counts, priority classes, or reserved memory partitions (as we
+recommend in the failure case explanation) so that large, resource-
+hungry processes cannot indefinitely block small ones, while still
+giving every process a bounded, predictable number of attempts before
+a final decision is made - exactly the MAX_WAIT_ROUNDS mechanism used
+in enrolment_scheduler_s8210611.sh.
